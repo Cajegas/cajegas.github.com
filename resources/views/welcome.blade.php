@@ -113,7 +113,6 @@
                 width: 100%;
                 flex-direction: column;
                 gap: 0;
-                background: rgba(0,0,0,0.9);
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.3s ease;
@@ -123,6 +122,7 @@
             }
             .main-nav.show {
                 max-height: 400px; /* enough to show all links */
+                background: rgba(0,0,0,0.6);
             }
             .nav-link {
                 padding: 18px 20px;
@@ -187,22 +187,6 @@
             #about .project-card img {
                 max-width: 250px;
             }
-            #contact {
-                display: flex;
-                flex-direction: column; /* vertical by default */
-                gap: 10px;
-                align-items: center;
-                margin: 40px 0;
-                padding: 20px;
-            }
-            #contact a {
-                color: white;
-                text-decoration: none;
-                font-size: 18px;
-                padding: 10px 20px;
-                border-radius: 8px;
-                transition: background-color 0.3s ease;
-            }
             footer {
                 padding: 30px 30px;
                 font-size: 14px;
@@ -241,11 +225,6 @@
                 margin-top: 0px;
                 padding-top: 0px;
             }
-            #contact {
-                flex-direction: column;       /* horizontal layout */
-                justify-content: center;   /* center links horizontally */
-                gap: 20px;                 /* space between links */
-            }
         }
 
 
@@ -269,10 +248,6 @@
         #about { padding: 50px 20px; color: white; display: flex; flex-direction: column; gap: 30px; text-align: center; background-size: cover; background-position: center; background-color: rgba(8,14,21,0.8); }
         #about h2 { font-size: 28px; color: #E37434; }
         #about img { max-width: 100%; height: auto; }
-
-        #contact { display: flex; flex-direction: row; gap: 5px; align-items: center; margin: 40px 0; padding: 20px; justify-content: center;}
-        #contact a { color: white; text-decoration: none; font-size: 18px; padding: 10px 20px; border-radius: 8px; transition: background-color 0.3s ease; }
-        #contact a:hover { background-color: rgba(255,255,255,0.15); }
 
         footer { text-align: center; color: white; padding: 30px; }
 
@@ -362,11 +337,6 @@
                     </div>
                 </div>
             </section>
-
-           <!-- <section id="contact">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-            </section> -->
 
             <footer>&copy; 2025 Jennifer Cajegas. All rights reserved.</footer>
         </div>
