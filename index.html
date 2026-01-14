@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jenper Web</title>
 <style>
-        html { scroll-behavior: smooth; }
-        body { margin: 0; background-color: #16476A; font-family: 'Open Sans', sans-serif; }
+         html { scroll-behavior: smooth; }
+        body { margin: 0; background-color: #0a4c7aff; font-family: 'Open Sans', sans-serif; }
 
         /* ----- Animation ----- */
         .pop { opacity: 0; transform: translateY(20px); }
@@ -15,7 +15,7 @@
 
         /* ----- Header ----- */
         .site-header {
-            position: flex;
+            position: fixed;
             top: 0;
             width: 100%;
             height: 80px;
@@ -24,15 +24,15 @@
             justify-content: space-between; 
             padding: 0 20px;    
             z-index: 1000;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.5);
             box-sizing: border-box;
             flex-wrap: wrap;
         }
 
 
         #jclogo img{
-            max-height: 100%;
-            width: auto;
+            max-height: 80px;
+            width: 90px;
         }
 
 
@@ -41,14 +41,15 @@
             display: none;
             flex-direction: column;
             justify-content: space-around;
-            width: 30px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
         }
         .burger div {
             height: 3px;
             background: white;
             border-radius: 2px;
+            background: rgba(188, 202, 210, 0.8);
         }
 
         /* ----- Nav ----- */
@@ -94,9 +95,9 @@
                 top: 0;
             }
              #jclogo img {
-                height: 70px;   /* smaller logo for mobile */
+                height: 80px;   /* smaller logo for mobile */
                 width: auto;
-                max-width: 80px;
+                max-width: 120px;
             }
             .burger { 
                 display: flex; 
@@ -112,7 +113,6 @@
                 width: 100%;
                 flex-direction: column;
                 gap: 0;
-                background: rgba(0,0,0,0.98);
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.3s ease;
@@ -122,6 +122,7 @@
             }
             .main-nav.show {
                 max-height: 400px; /* enough to show all links */
+                background: rgba(0,0,0,0.6);
             }
             .nav-link {
                 padding: 18px 20px;
@@ -186,18 +187,8 @@
             #about .project-card img {
                 max-width: 250px;
             }
-            #contact {
-                padding: 30px 15px;
-            }
-            #contact a {
-                font-size: 16px;
-                padding: 12px 24px;
-                min-height: 44px;
-                display: inline-flex;
-                align-items: center;
-            }
             footer {
-                padding: 20px 15px;
+                padding: 30px 30px;
                 font-size: 14px;
             }
             .grid-card {
@@ -208,6 +199,7 @@
             }
             .grid-card a {
                 font-size: 14px;
+                word-break: break-word;
             }
         }
         
@@ -230,8 +222,8 @@
                 top: 60px;
             }
             #home {
-                margin-top: 60px;
-                padding-top: 60px;
+                margin-top: 0px;
+                padding-top: 0px;
             }
         }
 
@@ -248,20 +240,16 @@
 
         #projects { padding: 40px 20px; background-size: cover; background-position: center; color: white; }
         #projects h2 { text-align: center; font-size: 28px; color: #E37434; margin-bottom: 30px; }
-        .projects-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .projects-grid { display: grid; grid-template-columns: 1fr; gap: 20px; text-align: center;}
         .project-card { background-color: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .project-card:hover { transform: scale(1.03); }
-        .project-card img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; }
+        .project-card img { max-width: 260px; height: auto; border-radius: 8px; margin-bottom: 10px; }
 
         #about { padding: 50px 20px; color: white; display: flex; flex-direction: column; gap: 30px; text-align: center; background-size: cover; background-position: center; background-color: rgba(8,14,21,0.8); }
         #about h2 { font-size: 28px; color: #E37434; }
         #about img { max-width: 100%; height: auto; }
 
-        #contact { display: flex; flex-direction: column; gap: 20px; align-items: center; margin: 40px 0; padding: 20px; }
-        #contact a { color: white; text-decoration: none; font-size: 18px; padding: 10px 20px; border-radius: 8px; transition: background-color 0.3s ease; }
-        #contact a:hover { background-color: rgba(255,255,255,0.15); }
-
-        footer { text-align: center; color: white; padding: 20px; }
+        footer { text-align: center; color: white; padding: 30px; }
 
         .grid-card { background-color: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; }
         .grid-card h4 { margin-top: 0; color: #E37434; }
@@ -273,7 +261,7 @@
             #home h1 { font-size: 50px; text-align: left; }
             #home h3 { font-size: 20px; text-align: left; }
             #projects { padding: 50px 80px; }
-            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); text-align: center; padding-top:20px;}
             #about { flex-direction: row; text-align: left; padding: 100px; }
             .main-nav { flex-direction: row; position: static; max-height: none; background: transparent;}
         }   
@@ -281,6 +269,7 @@
         </head>
         <body>
         <div id="app">
+            <base target="_blank">
             <header class="site-header">
 
                 <div id="jclogo">
@@ -295,7 +284,7 @@
                 </div>
 
                 <!-- Nav Links -->
-                <nav :class="['main-nav', { show: isMenuOpen }]">
+                <nav ref="navMenu" :class="['main-nav', { show: isMenuOpen }]">
                     <a v-for="link in navLinks"
                     :key="link.id"
                     :href="'#' + link.id"
@@ -316,10 +305,18 @@
             <section id="projects" style="background-image: url('public/images/img4.jpeg');">
                 <h2>My Projects</h2>
                 <div class="projects-grid">
-                    <div class="project-card"><img src="public/images/task.jpeg" alt="Project 1"><p>Short description of project 1.</p></div>
-                    <div class="project-card"><img src="public/images/task.jpeg" alt="Project 2"><p>Short description of project 2.</p></div>
-                    <div class="project-card"><img src="public/images/task.jpeg" alt="Project 3"><p>Short description of project 3.</p></div>
-                    <div class="project-card"><img src="public/images/task.jpeg" alt="Project 4"><p>Short description of project 4.</p></div>
+                    <div class="project-card"><img src="public/images/BMAMS.png" alt="Batuan Municipal Agricultural Management System">
+                    <p>Developed as my thesis project during university, this VB.Net, database-driven system manages agricultural
+                         data for Batuan, Bohol. It tracks farmer registration, land holdings, resource distribution, and other municipal 
+                         agricultural records. The system demonstrates my skills in database design, application development, 
+                         and creating user-friendly systems that turn complex municipal data into actionable insights.</p></div>
+                    <div class="project-card"><img src="public/images/AInsurance.png" alt="Alturas Healthcare">
+                    <p>A PHP, database-driven web application developed during my 1-year tenure at Alturas Group of Companies.
+                         The system manages employee insurance records, budgets, and claims based on position and tenure,
+                          integrates with partner hospitals for billing, and provides real-time insights on remaining benefits. 
+                          This project highlights my skills in web development, database design, and building scalable, data-driven systems.</p></div>
+                    <!--<div class="project-card"><img src="./images/task.jpeg" alt="Project 3"><p>Short description of project 3.</p></div>
+                    <div class="project-card"><img src="./images/task.jpeg" alt="Project 4"><p>Short description of project 4.</p></div>-->
                 </div>
             </section>
 
@@ -334,16 +331,11 @@
                          from the Philippines and have a strong foundation in MVC architecture and database-driven applications. I'm also authorized 
                          to work in the Netherlands.</p>
                     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:20px;">
-                        <div class="grid-card"><h4>LinkedIn</h4><a href="#">linkedin.com/in/jennifer</a></div>
-                        <div class="grid-card"><h4>Indeed</h4><a href="#">Indeed.com/in/jennifer</a></div>
-                        <div class="grid-card"><h4>GitHub</h4><a href="#">github.com/jennifer</a></div>
+                        <div class="grid-card"><h4>LinkedIn</h4><a href="https://www.linkedin.com/in/jennifer-cajegas-9689ab332">www.linkedin.com/in/jennifer-cajegas-9689ab332</a></div>
+                        <div class="grid-card"><h4>Indeed</h4><a href="https://profile.indeed.com/p/jenniferc-bkmyw2f">profile.indeed.com/p/jennifer</a></div>
+                        <div class="grid-card"><h4>GitHub</h4><a href="https://github.com/Cajegas/cajegas.github.com">cajegas.github.com</a></div>
                     </div>
                 </div>
-            </section>
-
-            <section id="contact">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
             </section>
 
             <footer>&copy; 2025 Jennifer Cajegas. All rights reserved.</footer>
@@ -430,16 +422,30 @@
 
             mounted() {
                 window.addEventListener("scroll", this.onScroll);
+                document.addEventListener("click", this.handleOutsideClick);
                 this.onScroll();
             },
 
             beforeUnmount() {
                 window.removeEventListener("scroll", this.onScroll);
+                document.removeEventListener("click", this.handleOutsideClick);
             },
 
             methods: {
                 toggleMenu() {
                     this.isMenuOpen = !this.isMenuOpen; // Toggle nav visibility
+                },
+
+                 handleOutsideClick(event) {
+                    // Only close if menu is open
+                    if (!this.isMenuOpen) return;
+
+                    // Check if the click is outside the nav AND the burger
+                    const nav = this.$refs.navMenu;
+                    const burger = document.querySelector(".burger");
+                    if (!nav.contains(event.target) && !burger.contains(event.target)) {
+                        this.isMenuOpen = false;
+                    }
                 },
 
                 onScroll() {
@@ -448,6 +454,9 @@
                     sections.forEach(section => {
                         const sectionTop = section.offsetTop - 120;
                         const sectionHeight = section.offsetHeight;
+
+                         // Close burger if scrolling
+                        if (this.isMenuOpen) this.isMenuOpen = false;
 
                         if (
                             window.scrollY >= sectionTop &&
