@@ -272,6 +272,87 @@
             .main-nav { flex-direction: row; position: static; max-height: none; background: transparent;}
         }   
     </style>
+    <script>
+        // Detect and set base path for GitHub Pages (works for both root and subdirectory)
+        // This must run early to fix paths before resources are loaded
+        (function() {
+            // Only update paths if we're on GitHub Pages (not local file://)
+            if (window.location.protocol === 'file:') {
+                return; // Skip path updates for local file:// protocol
+            }
+            
+            let path = window.location.pathname;
+            // Remove trailing slash and index.html if present
+            path = path.replace(/\/index\.html$/, '').replace(/\/$/, '');
+            // If path is empty or just '/', we're at root
+            const basePath = path && path !== '/' ? path : '';
+            
+            // Always use absolute paths for GitHub Pages
+            const assetBase = basePath + '/public';
+            
+            // Store assetBase globally so we can use it when DOM is ready
+            window.__assetBase = assetBase;
+            
+            // Use MutationObserver to catch and update script tags before they load
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeName === 'SCRIPT' && node.src) {
+                            const srcAttr = node.getAttribute('src');
+                            if (srcAttr && srcAttr.startsWith('public/')) {
+                                const relativePath = srcAttr.replace(/^public\//, '');
+                                node.src = assetBase + '/' + relativePath;
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Start observing before body is parsed
+            observer.observe(document.documentElement, {
+                childList: true,
+                subtree: true
+            });
+            
+            // Update paths when DOM is ready
+            function updatePaths() {
+                // Update Vue script src (in case MutationObserver missed it)
+                const vueScript = document.querySelector('script[src*="vue.global.js"]');
+                if (vueScript) {
+                    const srcAttr = vueScript.getAttribute('src');
+                    if (srcAttr && srcAttr.startsWith('public/')) {
+                        vueScript.src = assetBase + '/js/vue.global.js';
+                    }
+                }
+                
+                // Update image sources - check the src attribute, not the resolved URL
+                const images = document.querySelectorAll('img');
+                images.forEach(img => {
+                    const srcAttr = img.getAttribute('src');
+                    if (srcAttr && srcAttr.startsWith('public/')) {
+                        const relativePath = srcAttr.replace(/^public\//, '');
+                        img.setAttribute('src', assetBase + '/' + relativePath);
+                    }
+                });
+                
+                // Update background images in inline styles
+                const sections = document.querySelectorAll('section[style*="background-image"]');
+                sections.forEach(section => {
+                    const style = section.getAttribute('style');
+                    if (style && style.includes('public/images/')) {
+                        const newStyle = style.replace(/public\/images\//g, assetBase + '/images/');
+                        section.setAttribute('style', newStyle);
+                    }
+                });
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', updatePaths);
+            } else {
+                updatePaths();
+            }
+        })();
+    </script>
         </head>
         <body>
         <div id="app">
@@ -347,71 +428,18 @@
             <footer>&copy; 2025 Jennifer Cajegas. All rights reserved.</footer>
         </div>
     
+    <script data-vue-src="public/js/vue.global.js"></script>
     <script>
-        // Detect and set base path for GitHub Pages (works for both root and subdirectory)
+        // Load Vue with correct path and initialize app when ready
         (function() {
-            // Only update paths if we're on GitHub Pages (not local file://)
-            if (window.location.protocol === 'file:') {
-                return; // Skip path updates for local file:// protocol
-            }
-            
-            let path = window.location.pathname;
-            // Remove trailing slash and index.html if present
-            path = path.replace(/\/index\.html$/, '').replace(/\/$/, '');
-            // If path is empty or just '/', we're at root
-            const basePath = path && path !== '/' ? path : '';
-            
-            // Only update if we have a base path (subdirectory on GitHub Pages)
-            if (!basePath) {
-                return; // At root, paths are already correct
-            }
-            
-            const assetBase = basePath + '/public';
-            
-            // Update paths immediately
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', updatePaths);
-            } else {
-                updatePaths();
-            }
-            
-            function updatePaths() {
-                // Update Vue script src
-                const vueScript = document.querySelector('script[src*="vue.global.js"]');
-                if (vueScript) {
-                    const srcAttr = vueScript.getAttribute('src');
-                    if (srcAttr && srcAttr.startsWith('public/')) {
-                        vueScript.src = assetBase + '/js/vue.global.js';
-                    }
+            function initVueApp() {
+                if (typeof Vue === 'undefined') {
+                    // Vue not loaded yet, wait a bit and try again
+                    setTimeout(initVueApp, 50);
+                    return;
                 }
                 
-                // Update image sources - check the src attribute, not the resolved URL
-                const images = document.querySelectorAll('img');
-                images.forEach(img => {
-                    const srcAttr = img.getAttribute('src');
-                    if (srcAttr && srcAttr.startsWith('public/')) {
-                        const relativePath = srcAttr.replace(/^public\//, '');
-                        img.setAttribute('src', assetBase + '/' + relativePath);
-                    }
-                });
-                
-                // Update background images in inline styles
-                const sections = document.querySelectorAll('section[style*="background-image"]');
-                sections.forEach(section => {
-                    const style = section.getAttribute('style');
-                    if (style && style.includes('public/images/')) {
-                        const newStyle = style.replace(/public\/images\//g, assetBase + '/images/');
-                        section.setAttribute('style', newStyle);
-                    }
-                });
-            }
-        })();
-    </script>
-    
-    <script src="public/js/vue.global.js"></script>
-
-    <script>
-        const { createApp } = Vue;
+                const { createApp } = Vue;
 
         createApp({
             data() {
@@ -508,7 +536,36 @@
                     });
                 }
             }
-        }).mount("#app");
+            }).mount("#app");
+            }
+            
+            const vueScript = document.querySelector('script[data-vue-src]');
+            if (vueScript) {
+                const dataSrc = vueScript.getAttribute('data-vue-src');
+                const script = document.createElement('script');
+                
+                // Check if we're on GitHub Pages (not local file://)
+                if (window.location.protocol !== 'file:' && dataSrc && dataSrc.startsWith('public/')) {
+                    const assetBase = window.__assetBase || '/public';
+                    const relativePath = dataSrc.replace(/^public\//, '');
+                    script.src = assetBase + '/' + relativePath;
+                } else {
+                    // Local development - use relative path
+                    script.src = dataSrc;
+                }
+                
+                script.onload = initVueApp;
+                script.onerror = function() {
+                    console.error('Failed to load Vue.js. Please check the path:', script.src);
+                    // Try to initialize anyway in case Vue is already loaded
+                    setTimeout(initVueApp, 100);
+                };
+                document.head.appendChild(script);
+            } else {
+                // If no data-vue-src, try to initialize immediately (Vue might already be loaded)
+                initVueApp();
+            }
+        })();
     </script>
     </body>
 
