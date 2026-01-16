@@ -105,6 +105,7 @@
                 height: 25px;
                 min-width: 35px;
                 min-height: 25px;
+                padding-bottom:10px;
             }
             .main-nav {
                 position: fixed;
@@ -225,6 +226,11 @@
                 margin-top: 0px;
                 padding-top: 0px;
             }
+            #jclogo img {
+                height: 80px;   /* smaller logo for mobile */
+                width: auto;
+                max-width: 120px;
+            }
         }
 
 
@@ -310,7 +316,7 @@
                          data for Batuan, Bohol. It tracks farmer registration, land holdings, resource distribution, and other municipal 
                          agricultural records. The system demonstrates my skills in database design, application development, 
                          and creating user-friendly systems that turn complex municipal data into actionable insights.</p></div>
-                    <div class="project-card"><img src="./images/AInsurance.png" alt="Alturas Healthcare">
+                    <div class="project-card"><img src="./images/Ahc.png" alt="Alturas Healthcare" style="height:173px">
                     <p>A PHP, database-driven web application developed during my 1-year tenure at Alturas Group of Companies.
                          The system manages employee insurance records, budgets, and claims based on position and tenure,
                           integrates with partner hospitals for billing, and provides real-time insights on remaining benefits. 
@@ -333,7 +339,7 @@
                     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:20px;">
                         <div class="grid-card"><h4>LinkedIn</h4><a href="https://www.linkedin.com/in/jennifer-cajegas-9689ab332">www.linkedin.com/in/jennifer-cajegas-9689ab332</a></div>
                         <div class="grid-card"><h4>Indeed</h4><a href="https://profile.indeed.com/p/jenniferc-bkmyw2f">profile.indeed.com/p/jennifer</a></div>
-                        <div class="grid-card"><h4>GitHub</h4><a href="https://github.com/Cajegas/cajegas.github.com">cajegas.github.com</a></div>
+                        <div class="grid-card"><h4>GitHub</h4><a href="https://github.com/Cajegas">cajegas.github.com</a></div>
                     </div>
                 </div>
             </section>
