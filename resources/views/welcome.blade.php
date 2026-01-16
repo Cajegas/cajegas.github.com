@@ -336,10 +336,10 @@
                          (CodeIgniter or Laravel), JavaScript, CSS, Bootstrap, and Tailwind CSS. I hold a Bachelor's degree in Computer Science 
                          from the Philippines and have a strong foundation in MVC architecture and database-driven applications. I'm also authorized 
                          to work in the Netherlands.</p>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:20px;">
+                     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:20px;">
                         <div class="grid-card"><h4>LinkedIn</h4><a href="https://www.linkedin.com/in/jennifer-cajegas-9689ab332">www.linkedin.com/in/jennifer-cajegas-9689ab332</a></div>
-                        <div class="grid-card"><h4>Indeed</h4><a href="https://profile.indeed.com/p/jenniferc-bkmyw2f">profile.indeed.com/p/jennifer</a></div>
-                        <div class="grid-card"><h4>GitHub</h4><a href="https://github.com/Cajegas">cajegas.github.com</a></div>
+                        <div class="grid-card"><h4>Indeed</h4><a href="https://profile.indeed.com/p/jenniferc-bkmyw2f">profile.indeed.com/p/jenniferc-bkmyw2f</a></div>
+                        <div class="grid-card"><h4>GitHub</h4><a href="https://github.com/Cajegas">cajegas.github.io</a></div>
                     </div>
                 </div>
             </section>
