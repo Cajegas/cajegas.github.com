@@ -33,6 +33,7 @@
         #jclogo img{
             max-height: 80px;
             width: 90px;
+            padding-top:7px;
         }
 
 
@@ -98,6 +99,7 @@
                 height: 80px;   /* smaller logo for mobile */
                 width: auto;
                 max-width: 120px;
+                padding-top:0px;
             }
             .burger { 
                 display: flex; 
@@ -106,6 +108,7 @@
                 min-width: 35px;
                 min-height: 25px;
                 padding-bottom:10px;
+                padding-right:13px;
             }
             .main-nav {
                 position: fixed;
@@ -143,6 +146,7 @@
                 padding: 80px 20px 40px 20px;
                 min-height: calc(100vh - 70px);
                 margin-top: 70px;
+                background-position: 10% center;
             }
             #home h1 {
                 font-size: 28px;
@@ -225,12 +229,14 @@
             #home {
                 margin-top: 0px;
                 padding-top: 0px;
+                background-position: 10% center;
             }
             #jclogo img {
                 height: 80px;   /* smaller logo for mobile */
                 width: auto;
                 max-width: 120px;
             }
+          
         }
 
 
@@ -304,8 +310,8 @@
 
             <!-- Sections -->
             <section id="home" style="background-image: url('./images/bckg.png');">
-                <h1 class="pop animate">Jennifer Cajegas</h1>
-                <h3 class="pop animate">Junior Full Stack Web Developer</h3>
+                    <h1>Jennifer Cajegas</h1>
+                    <h3>Junior Full Stack Web Developer</h3>
             </section>
 
             <section id="projects" style="background-image: url('./images/img4.jpeg');">
@@ -333,13 +339,13 @@
                 <div style="flex:2; display:flex; flex-direction:column; gap:20px;">
                     <h2>About Me</h2>
                     <p>Hello! I'm Jennifer Cajegas, a Junior Full Stack Web Developer. I build responsive, user-friendly websites using PHP
-                         (CodeIgniter or Laravel), JavaScript, CSS, Bootstrap, and Tailwind CSS. I hold a Bachelor's degree in Computer Science 
+                         (CodeIgniter or Laravel), JavaScript, Vue.js, CSS, Bootstrap, and Tailwind CSS. I hold a Bachelor's degree in Computer Science 
                          from the Philippines and have a strong foundation in MVC architecture and database-driven applications. I'm also authorized 
                          to work in the Netherlands.</p>
                      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:20px;">
                         <div class="grid-card"><h4>LinkedIn</h4><a href="https://www.linkedin.com/in/jennifer-cajegas-9689ab332">www.linkedin.com/in/jennifer-cajegas-9689ab332</a></div>
                         <div class="grid-card"><h4>Indeed</h4><a href="https://profile.indeed.com/p/jenniferc-bkmyw2f">profile.indeed.com/p/jenniferc-bkmyw2f</a></div>
-                        <div class="grid-card"><h4>GitHub</h4><a href="https://github.com/Cajegas">cajegas.github.io</a></div>
+                        <div class="grid-card"><h4>GitHub</h4><a href="https://github.com/Cajegas">github.com/Cajegas</a></div>
                     </div>
                 </div>
             </section>
